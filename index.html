@@ -74,8 +74,8 @@
 <body>
     <div class="bank-card">
         <h1>Мой Банк</h1>
-        <div class="balance" id="balance">5000 дикоинов</div>
-        <div class="change" id="change">Последнее изменение: 0 dk</div>
+        <div class="balance" id="balance">5000 ₽</div>
+        <div class="change" id="change">Последнее изменение: 0 ₽</div>
         <div class="buttons">
             <button class="minus" onclick="updateBalance(-500)">-500</button>
             <button class="minus" onclick="updateBalance(-1000)">-1000</button>
@@ -84,13 +84,13 @@
     </div>
 
     <script>
-        let currentBalance = 32 998;
+        let currentBalance = 5000;
 
         function updateBalance(amount) {
             currentBalance += amount;
-            document.getElementById('balance').innerText = currentBalance + ' dk';
+            document.getElementById('balance').innerText = currentBalance + ' ₽';
             let changeText = amount > 0 ? '+' + amount : amount;
-            document.getElementById('change').innerText = 'Последнее изменение: ' + changeText + ' dk';
+            document.getElementById('change').innerText = 'Последнее изменение: ' + changeText + ' ₽';
         }
     </script>
 </body>
