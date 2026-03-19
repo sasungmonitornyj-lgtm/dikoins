@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простой банк</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .bank-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 300px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        .balance {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #27ae60;
+            margin: 10px 0;
+        }
+        .change {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        button {
+            background-color: #3498db;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        button.minus {
+            background-color: #e74c3c;
+        }
+        button.minus:hover {
+            background-color: #c0392b;
+        }
+        button.plus {
+            background-color: #2ecc71;
+        }
+        button.plus:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <div class="bank-card">
+        <h1>Мой Банк</h1>
+        <div class="balance" id="balance">5000 дикоинов</div>
+        <div class="change" id="change">Последнее изменение: 0 dk</div>
+        <div class="buttons">
+            <button class="minus" onclick="updateBalance(-500)">-500</button>
+            <button class="minus" onclick="updateBalance(-1000)">-1000</button>
+            <button class="plus" onclick="updateBalance(1000)">+1000</button>
+        </div>
+    </div>
+
+    <script>
+        let currentBalance = 32 998;
+
+        function updateBalance(amount) {
+            currentBalance += amount;
+            document.getElementById('balance').innerText = currentBalance + ' dk';
+            let changeText = amount > 0 ? '+' + amount : amount;
+            document.getElementById('change').innerText = 'Последнее изменение: ' + changeText + ' dk';
+        }
+    </script>
+</body>
+</html>
