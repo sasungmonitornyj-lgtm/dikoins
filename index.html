@@ -7,7 +7,7 @@
     .small-text { font-size: 12px; }
 </style>
 </head>
-<p><span class="big-text">Баланс: id="balanceDisplay"дк</span></p>
+<p>Баланс: <span class="big-text" id="balanceDisplay">81976</span> дк</p>
 <p>Кредиты:</p>
 <p>1. 50000дк  Комисия 492дк</p>
 <p style="margin-bottom: 20px;">Итого +49002дк</p>
@@ -24,7 +24,7 @@ if (balanceParam) {
     document.getElementById('balanceDisplay').textContent = balanceParam;
 } else {
     // Если параметра нет — берём из localStorage (или показываем последний)
-    const savedBalance = localStorage.getItem('currentBalance') || '82000';
+    const savedBalance = localStorage.getItem('currentBalance') || '81976';
     document.getElementById('balanceDisplay').textContent = savedBalance;
 }
 </script>
