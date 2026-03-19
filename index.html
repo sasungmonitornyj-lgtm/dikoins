@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Простой банк</title>
+    <title>ДиКоинсБанк</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -73,25 +73,57 @@
 </head>
 <body>
     <div class="bank-card">
-        <h1>Мой Банк</h1>
-        <div class="balance" id="balance">5000 ₽</div>
-        <div class="change" id="change">Последнее изменение: 0 ₽</div>
+        <h1>ДиКоинсБанк</h1>
+        <div class="balance" id="balance">5000 dk</div>
+        <div class="change" id="change">Последнее изменение: 0 dk</div>
         <div class="buttons">
-            <button class="minus" onclick="updateBalance(-500)">-500</button>
-            <button class="minus" onclick="updateBalance(-1000)">-1000</button>
-            <button class="plus" onclick="updateBalance(1000)">+1000</button>
+            <button class="minus" onclick="updateBalance(-500)">-500 dk</button>
+            <button class="minus" onclick="updateBalance(-1000)">-1000 dk</button>
+            <button class="plus" onclick="updateBalance(1000)">+1000 dk</button>
         </div>
     </div>
 
     <script>
-        let currentBalance = 5000;
+        // Ключ для хранения баланса в localStorage
+        const STORAGE_KEY = 'dikoins_balance';
+        
+        // Начальный баланс (используется, если в хранилище ничего нет)
+        const INITIAL_BALANCE = 32998;
 
+        // Текущий баланс
+        let currentBalance;
+
+        // При загрузке страницы восстанавливаем баланс из localStorage
+        function loadBalance() {
+            const savedBalance = localStorage.getItem(STORAGE_KEY);
+            if (savedBalance !== null) {
+                currentBalance = parseInt(savedBalance, 10);
+            } else {
+                currentBalance = INITIAL_BALANCE;
+            }
+            // Обновляем отображение
+            document.getElementById('balance').innerText = currentBalance + ' dk';
+        }
+
+        // Сохраняем баланс в localStorage
+        function saveBalance() {
+            localStorage.setItem(STORAGE_KEY, currentBalance);
+        }
+
+        // Обновляем баланс на указанную сумму
         function updateBalance(amount) {
             currentBalance += amount;
-            document.getElementById('balance').innerText = currentBalance + ' ₽';
+            // Обновляем текст баланса
+            document.getElementById('balance').innerText = currentBalance + ' dk';
+            // Обновляем поле последнего изменения
             let changeText = amount > 0 ? '+' + amount : amount;
-            document.getElementById('change').innerText = 'Последнее изменение: ' + changeText + ' ₽';
+            document.getElementById('change').innerText = 'Последнее изменение: ' + changeText + ' dk';
+            // Сохраняем новый баланс
+            saveBalance();
         }
+
+        // Вызываем загрузку баланса при старте
+        loadBalance();
     </script>
 </body>
 </html>
